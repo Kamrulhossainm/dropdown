@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottom to Top Modal</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* height: 100vh; */
+            /* text-align: center; */
+            justify-content: center;
+            background-color: #ddd;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .modal_section{
+            margin-top: 30px;
+        }
+         li{
+            list-style: none;
+        }
+         li a{
+            text-decoration: none;
+        }
+    .modal_section .modal-btn {
+        color: #000;
+        background-color: #fff;
+        position: relative;
+        padding: 0.6rem;
+        border-radius: 5px;
+        /* border: 1px solid #ddd; */
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: pointer;
+        gap: 10px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px;
+    }
+    .modal-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .modal_section .modal-dropdown {
+        position: absolute;
+        /* width: 250px; */
+        background-color: #fff;
+        margin-top: 0.10rem;
+        transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
+
+        transform: translateY(0.5rem);
+        visibility: hidden;
+        opacity: 0;
+        z-index: 99;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        border-top: none;
+    }
+    .modal_section .show {
+        transform: translateY(0rem);
+        visibility: visible;
+        opacity: 1;
+        margin-top: 0.3rem;
+    }
+    .arrow {
+        transform: rotate(180deg);
+        transition: o.2s ease;
+    }
+
+    </style>
+</head>
+<body>
+
+
+    <div class="modal_section">
+        <button class="modal-btn" id="btn">
+            dropdown
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" id="arrow">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>              
+        </button>
+
+        <div class="modal-dropdown" id="dropdown">
+            <li><a href="">Menuitem-1</a></li>
+            <li><a href="">Menuitem-2</a></li>
+            <li><a href="">Menuitem-3</a></li>
+            <li><a href="">Menuitem-4</a></li>
+            <li><a href="">Menuitem-5</a></li>
+            <li><a href="">Menuitem-6</a></li>
+        </div>
+    </div>
+
+    <script>
+        const Btn = document.querySelector(".modal-btn")
+        const dropdownMenu = document.querySelector(".modal-dropdown")
+        const toggleArrow = document.getElementById("arrow")
+
+        // Toggle dropdown function
+        const toggleDropdown = function() {
+            dropdownMenu.classList.toggle("show");
+            toggleArrow.classList.toggle("arrow")
+        }
+        // Toggle dropdown open/close when dropdown button is clicked
+        Btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggleDropdown();
+        })
+
+        // Toggle dropdown open/close when dropdown button is clicked
+        document.documentElement.addEventListener("click", function () {
+            if(dropdownMenu.classList.contains("show")){
+                toggleDropdown();
+            }
+        })
+    </script>
+
+</body>
+</html>
